@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="El autor de este proyecto es Manuel Herrero Iriso">
+        <meta name="description" content="El autor de este proyecto titulado GineGest es Manuel Herrero Iriso">
         <title>Laravel</title>
 
         <!-- Fonts -->
