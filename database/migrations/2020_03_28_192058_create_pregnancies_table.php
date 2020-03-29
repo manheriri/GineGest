@@ -16,6 +16,8 @@ class CreatePregnanciesTable extends Migration
         Schema::create('pregnancies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->date('fechaPrevista')->nullable();
+            $table->date('fechaInicio');
         });
     }
 

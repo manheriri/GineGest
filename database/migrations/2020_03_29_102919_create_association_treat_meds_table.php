@@ -17,7 +17,7 @@ class CreateAssociationTreatMedsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->date('initialDate');
-            $table->date('finalDate');
+            $table->date('finalDate')->nullable();
             $table->string('instructions');
         });
     }
