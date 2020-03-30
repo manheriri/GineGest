@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('surname1');
             $table->string('surname2')->nullable();
             $table->date('date_of_birth');
+            $table->boolean('isValid')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->enum('userType',['personalSanitario','paciente','donante']);
