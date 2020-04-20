@@ -64,6 +64,17 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('Citas') }}"
+                                              onclick="event.preventDefault();
+                                                     document.getElementById('Citas-form').submit();">
+                                        {{ __('Mis Citas') }}
+                                    </a>
+
+                                    <form id="Citas-form" action="{{ route('Citas') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+
                                 </div>
                             </li>
                         @endguest

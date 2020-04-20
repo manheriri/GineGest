@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -71,9 +70,22 @@
                             <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('DNI') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dni" type="dni" class="form-control @error('dni') is-invalid @enderror" name="dani" value="{{ old('dni') }}" required autocomplete="dni">
+                                <input id="dni" type="string" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}" required autocomplete="dni">
 
                                 @error('dni')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de nacimiento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth">
+
+                                @error('date_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -109,7 +121,7 @@
                             <div class="col-md-6">
                                 <input type="radio" id="personalSanitario" name="userType" value="personalSanitario" class="@error('userType') is-invalid @enderror" name="userType" value="{{ old('userType') }}" required autocomplete="userType" autofocus>
                                 <label for="personalSanitario">Personal Sanitario</label><br>
-                                <input type="radio" id="paciente" name="userType" value="peciente" class="@error('userType') is-invalid @enderror" name="userType" value="{{ old('userType') }}" required autocomplete="userType" autofocus>
+                                <input type="radio" id="paciente" name="userType" value="paciente" class="@error('userType') is-invalid @enderror" name="userType" value="{{ old('userType') }}" required autocomplete="userType" autofocus>
                                 <label for="paciente">Paciente</label><br>
                                 <input type="radio" id="donante" name="userType" value="donante" class="@error('userType') is-invalid @enderror" name="userType" value="{{ old('userType') }}" required autocomplete="userType" autofocus>
                                 <label for="donante">Donante</label><br>

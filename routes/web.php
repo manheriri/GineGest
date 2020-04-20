@@ -16,7 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::resource('Pacientes', 'PacienteController');
+//Route::resource('Personal Sanitario', 'PersonalSanitarioController');
+//Route::resource('Citas', 'CitasController');
+//Route::get('/misCitas','CitasController@index')->name('misCitas');
+//Route::group(['middleware' => 'App\Html\Middleware\PacienteMiddleware.php'], function(){
+  //  Route::patch('misCitas', 'CitasController@index')->name('misCitas');
+//Route::resource('misCitas','CitasController@index');
+
+//});
+//Route::group(['middleware' => 'App\Http\Middleware\PacienteMiddleware'], function()
+//{
+    Route::get('/Citas', 'CitasController@indexPaciente')->name('Citas');
+
+//});
+
+
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
