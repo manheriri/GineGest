@@ -27,7 +27,7 @@ Route::get('/', function () {
 //});
 //Route::group(['middleware' => 'App\Http\Middleware\PacienteMiddleware'], function()
 //{
-    Route::get('/Citas', 'CitasController@indexPaciente')->name('Citas');
+    Route::get('/Citas', 'CitasController@index')->name('Citas');
 
 //});
 
