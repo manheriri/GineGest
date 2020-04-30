@@ -28,7 +28,7 @@
 
                                 <tr>
                                     <td>{{ $appointment->fechaCita }}</td>
-                                    <td>{{ $appointment->medicoName }}</td>
+                                    <td>{{ $appointment->users->full_name }}</td>
                                     <td>{{ $appointment->reason}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$appointment->id], 'method' => 'get']) !!}
