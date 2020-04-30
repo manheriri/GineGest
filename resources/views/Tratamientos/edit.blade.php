@@ -10,16 +10,16 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::model($paciente_id, [ 'route' => ['citas.update',$paciente_id->id], 'method'=>'PUT']) !!}
+                        {!! Form::model($paciente_id, [ 'route' => ['tratamientos.update',$paciente_id->id], 'method'=>'PUT']) !!}
 
 
                         <div class="form-group">
-                            {!! Form::label('fechaCita', 'Fecha de la cita') !!}
-                            <input type="datetime-local" id="fechaCita" name="fechaCita" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d\Th:i')}}" />
+                            {!! Form::label('commonName', 'Nombre común') !!}
+                            {!! Form::text('commonName',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('reason', 'Motivo') !!}
-                            {!! Form::text('reason',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('ReproductiveTreatmentType', 'Tipo de tratamiento reproductivo') !!}
+                            {!! Form::text('ReproductiveTreatmentType',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
 
 

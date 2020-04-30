@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
                         @include('flash::message')
-                        {!! Form::open(['route' => 'Citas.create', 'method' => 'get']) !!}
+                        {!! Form::open(['route' => 'citas.create', 'method' => 'get']) !!}
                         {!!   Form::submit('Crear cita', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
@@ -18,7 +18,8 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Medico</th>
-                                <th>Paciente</th>
+
+                                <th>Motivo</th>
                                 <th colspan="2">Acciones</th>
                             </tr>
 
@@ -27,15 +28,15 @@
 
                                 <tr>
                                     <td>{{ $appointment->fechaCita }}</td>
-                                    <td>{{ $appointment->personalSanitario_id }}</td>
-                                    <td>{{ $appointment->paciente_id}}</td>
+                                    <td>{{ $appointment->medicoName }}</td>
+                                    <td>{{ $appointment->reason}}</td>
                                     <td>
-                                        {!! Form::open(['route' => ['Citas.edit',$appointment->id], 'method' => 'get']) !!}
+                                        {!! Form::open(['route' => ['citas.edit',$appointment->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        {!! Form::open(['route' => ['Citas.destroy',$appointment->id], 'method' => 'delete']) !!}
+                                        {!! Form::open(['route' => ['citas.destroy',$appointment->id], 'method' => 'delete']) !!}
                                         {!!   Form::submit('Borrar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
                                         {!! Form::close() !!}
 

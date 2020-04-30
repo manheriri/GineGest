@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'GineGest') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -65,13 +65,45 @@
                                         @csrf
                                     </form>
 
-                                    <a class="dropdown-item" href="{{ route('Citas') }}"
+                                    @if(Auth::user()->userType =='paciente')
+                                    <a class="dropdown-item" href="{{ route('misCitas') }}"
                                               onclick="event.preventDefault();
-                                                     document.getElementById('Citas-form').submit();">
-                                        {{ __('Mis Citas') }}
+                                                     document.getElementById('misCitas-form').submit();">
+                                        {{ __('Mis citas') }}
                                     </a>
 
-                                    <form id="Citas-form" action="{{ route('Citas') }}" method="GET" style="display: none;">
+                                    <form id="misCitas-form" action="{{ route('misCitas') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('misCitas') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('misCitas-form').submit();">
+                                        {{ __('Todas las citas') }}
+                                    </a>
+
+                                    <form id="misCitas-form" action="{{ route('misCitas') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+
+                                    @if(Auth::user()->userType =='personalSanitario')
+                                        <a class="dropdown-item" href="{{ route('observaciones.index') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('Observaciones-form').submit();">
+                                            {{ __('Mis observaciones') }}
+                                        </a>
+
+                                        <form id="Observaciones-form" action="{{ route('observaciones.index') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('tratamientos.index') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('tratamientos-form').submit();">
+                                        {{ __('Tratamientos') }}
+                                    </a>
+
+                                    <form id="tratamientos-form" action="{{ route('tratamientos.index') }}" method="GET" style="display: none;">
                                         @csrf
                                     </form>
 
