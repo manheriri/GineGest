@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Observation;
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 
 class CitasController extends Controller
@@ -29,12 +30,10 @@ class CitasController extends Controller
 
         return view('Citas.index',['appointments'=>$appointments]);
     }
-    public function indexPaciente()
+    public function indexPersonalSanitario()
     {
-        $appointments = Appointment::all();
-       // $appointments = Appointment::where('paciente_id',Auth::user()->id)->get();
-
-        return view('Citas.indexPaciente',['appointments'=>$appointments]);
+        $appointments = Appointment::where('personalSanitario_id',Auth::user()->id)->get();
+        return view('Citas.indexPersonalSanitario',['appointments'=>$appointments]);
     }
 
     /**
@@ -44,10 +43,13 @@ class CitasController extends Controller
      */
     public function create()
     {
-       // $appointments = Appointment::all();
-        $users = User::all()->pluck('full_name','id');
-
-        return view('Citas/create',[ 'users'=>$users]);
+        $personalSanitario = User::where('userType','personalSanitario')->get()->pluck('name','id');
+        return view('Citas/create',['personalSanitario'=>$personalSanitario]);
+    }
+    public function createPersonalSanitario()
+    {
+        $paciente = User::where('userType','paciente')->get()->pluck('name','id');
+        return view('Citas/createPersonalSanitario',['paciente'=>$paciente]);
     }
 
     /**
@@ -58,17 +60,16 @@ class CitasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {/*
         $this->validate($request, [
-            'fechaCita' => 'required|date|after:now',
+            'fechaCita' => ['required|date|after:now'],
             'medicoName' => ['required', 'string', 'max:255'],
             'reason' => ['required', 'string', 'max:255'],
-        ]);
-        $paciente_id = Auth::user()->id;
+        ]);*/
+        //$paciente_id = Auth::user()->id;
 
         $appointment = new Appointment($request->all());
-        $appointment->paciente_id = $paciente_id;
-
+        $appointment->paciente_id =Auth::user()->id;
         $appointment->save();
 
 
@@ -76,6 +77,25 @@ class CitasController extends Controller
 
         return redirect()->route('citas.index');
     }
+    public function storePersonal(Request $request)
+    {/*
+        $this->validate($request, [
+            'fechaCita' => ['required|date|after:now'],
+            'medicoName' => ['required', 'string', 'max:255'],
+            'reason' => ['required', 'string', 'max:255'],
+        ]);*/
+        //$paciente_id = Auth::user()->id;
+
+        $appointment = new Appointment($request->all());
+        $appointment->personalSanitario_id =Auth::user()->id;
+        $appointment->save();
+
+
+        flash('Cita creada correctamente');
+
+        return redirect()->route('citasPersonal');
+    }
+
 
     /**
      * Display the specified resource.
@@ -137,11 +157,11 @@ class CitasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $appointments = Appointment::find($id);
-        $appointments->delete();
-        flash('Cita borrada correctamente');
+{
+    $appointments = Appointment::find($id);
+    $appointments->delete();
+    flash('Cita borrada correctamente');
 
-        return redirect()->route('Citas.index');
-    }
+    return redirect()->route('citasPersonal');
+}
 }

@@ -5,24 +5,26 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear tratamiento</div>
+                    <div class="panel-heading">Crear Cita</div>
 
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['route' => 'tratamientos.store']) !!}
+                        {!! Form::open(['route' => 'createPersonalSanitario']) !!}
 
                         <div class="form-group">
                             {!! Form::label('paciente_id', 'Paciente') !!}
-                            {!! Form::select('paciente_id',$pacientes, ['class' => 'form-control'])!!}
+                            {!! Form::select('paciente_id',$paciente, ['class' => 'form-control'])!!}
                         </div>
+
                         <div class="form-group">
-                            {!! Form::label('commonName', 'Nombre común') !!}
-                            {!! Form::text('commonName',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('fechaCita', 'Fecha de la cita') !!}
+                            <input type="datetime-local" id="fechaCita" name="fechaCita" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d\Th:i')}}" />
                         </div>
+
                         <div class="form-group">
-                            {!! Form::label('ReproductiveTreatmentType', 'Tipo de tratamiento reproductivo') !!}
-                            {!! Form::select('ReproductiveTreatmentType',['FIV-ICSI'=>'FIV-ICSI','ROPA'=>'ROPA','estimulaciónOvárica'=>'Estimulación Ovárica','inseminaciónArtificial'=>'Inseminación Artificial'], ['class' => 'form-control'])!!}
+                            {!! Form::label('reason', 'Motivo') !!}
+                            {!! Form::text('reason',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
 
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}

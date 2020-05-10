@@ -25,7 +25,7 @@
 
 
                                 <tr>
-                                    <td>{{ $treatment->paciente_id }}
+                                    <td>{{ $treatment->paciente->name }}
                                     </td>
                                     <td>{{ $treatment->commonName }}
                                     </td>

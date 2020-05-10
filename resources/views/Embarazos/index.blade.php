@@ -9,35 +9,38 @@
 
                     <div class="panel-body">
                         @include('flash::message')
-                        {!! Form::open(['route' => 'tratamientos.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Crear tratamiento', ['class'=> 'btn btn-primary'])!!}
+                        {!! Form::open(['route' => 'embarazos.create', 'method' => 'get']) !!}
+                        {!!   Form::submit('Crear Embarazo', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>Paciente</th>
-                                <th>Nombre común</th>
-                                <th>Tipo de tratamiento reproductivo</th>
+                                <th>Fecha inicio</th>
+                                <th>Fecha final</th>
+                                <th>Fecha fin</th>
                                 <th colspan="2">Acciones</th>
                             </tr>
 
-                            @foreach ($treatments as $treatment)
+                            @foreach ($pregnancies as $pregnancy)
 
 
                                 <tr>
-                                    <td>{{ $treatment->paciente_id }}
+                                    <td>{{ $pregnancy->paciente->name }}
                                     </td>
-                                    <td>{{ $treatment->commonName }}
+                                    <td>{{ $pregnancy->fechaInicio }}
                                     </td>
-                                    <td>{{ $observation->ReproductiveTreatmentType }}
+                                    <td>{{ $pregnancy->fechaPrevista }}
+                                    </td>
+                                    <td>{{ $pregnancy->fechaFinal }}
                                     </td>
                                     <td>
-                                        {!! Form::open(['route' => ['tratamientos.edit',$treatment->id], 'method' => 'get']) !!}
+                                        {!! Form::open(['route' => ['embarazos.edit',$pregnancy->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        {!! Form::open(['route' => ['tratamientos.destroy',$treatment->id], 'method' => 'delete']) !!}
+                                        {!! Form::open(['route' => ['embarazos.destroy',$pregnancy->id], 'method' => 'delete']) !!}
                                         {!!   Form::submit('Eliminar', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
                                     </td>

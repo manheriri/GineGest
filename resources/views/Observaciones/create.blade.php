@@ -14,39 +14,39 @@
 
                         <div class="form-group">
                             {!! Form::label('motherWeigth', 'Peso materno') !!}
-                            {!! Form::text('motherWeigth',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::number('motherWeigth',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('fetalWeigth', 'Peso del feto') !!}
-                            {!! Form::text('fetalWeigth',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::number('fetalWeigth',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('gestationalWeek', 'Semana de gestación') !!}
-                            {!! Form::text('gestationalWeek',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('gestationWeek', 'Semana de gestación') !!}
+                            {!! Form::number('gestationWeek',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('fetalGender', 'Sexo del feto') !!}
-                            {!! Form::text('fetalGender',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::select('fetalGender',['boy'=>'Niño','girl'=>'Niña'], ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('fundalHeigth', 'Altura cuello uterino') !!}
-                            {!! Form::text('fundalHeigth',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('fundalHeight', 'Altura cuello uterino') !!}
+                            {!! Form::text('fundalHeight',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('streptococoAgalacitae', 'streptococo') !!}
-                            {!! Form::text('streptococoAgalacitae',null,['class'=>'form-control', 'required', 'autofocus']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('allergy', 'Alergias') !!}
+                            {!! Form::select('streptococoAgalacitae',['0'=>'No','1'=>'Si'], ['class' => 'form-control'])!!}
+                       </div>
+                       <div class="form-group">
+                           {!! Form::label('allergy', 'Alergias') !!}
                             {!! Form::text('allergy',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('smoker', 'Fumador') !!}
-                            {!! Form::text('smoker',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::select('smoker',['0'=>'No','1'=>'Si'], ['class' => 'form-control'])!!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('drunker', 'Bebedor') !!}
-                            {!! Form::text('drunker',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::select('drunker',['0'=>'No','1'=>'Si'], ['class' => 'form-control'])!!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('bloodType', 'Grupo sanguíneo') !!}
@@ -58,20 +58,25 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('menarquia', 'Menarquía') !!}
-                            {!! Form::text('menarquia',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            <input type="datetime-local" id="menarquia" name="menarquia" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d\Th:i')}}" />
+
+                        <div class="form-group">
+                            {!!Form::label('finalization', 'Tipo de finalizacion') !!}
+                            <br>
+                            {!! Form::select('finalization',['partoNatural'=>'Parto natural','partoVaginalInstrumental'=>'Paro vaniganl','partoAbdominal'=>'Parto abdominal','abortoEspontaneo'=>'Aborto espontáneo','abortoInducido'=>'Aborto inducido','abortoIndirecto'=>'Aborto indirecto'], ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('finalization', 'Tipo de finalización') !!}
-                            {!! Form::text('finalization',null,['class'=>'form-control', 'required', 'autofocus']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('background', 'bg') !!}
+                            {!! Form::label('background', 'Antecedentes') !!}
                             {!! Form::text('background',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('amniocentesis', 'Amniocentesis') !!}
                             {!! Form::text('amniocentesis',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
+                            <div class="form-group">
+                                {!! Form::label('paciente_id', 'Paciente') !!}
+                                {!! Form::select('paciente_id',$pacientes, ['class' => 'form-control'])!!}
+                            </div>
 
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 

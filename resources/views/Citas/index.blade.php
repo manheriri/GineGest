@@ -10,36 +10,29 @@
                     <div class="panel-body">
                         @include('flash::message')
                         {!! Form::open(['route' => 'citas.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Crear cita', ['class'=> 'btn btn-primary'])!!}
+                        {!!   Form::submit('Pedir cita', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
                         <br><br>
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>Fecha</th>
                                 <th>Medico</th>
-
+                                <th>Fecha</th>
                                 <th>Motivo</th>
-                                <th colspan="2">Acciones</th>
+                                <th colspan="1">Acciones</th>
                             </tr>
 
                             @foreach ($appointments as $appointment)
 
 
                                 <tr>
+                                    <td>{{ $appointment->personalSanitario->name }}</td>
                                     <td>{{ $appointment->fechaCita }}</td>
-                                    <td>{{ $appointment->users->full_name }}</td>
                                     <td>{{ $appointment->reason}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$appointment->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['citas.destroy',$appointment->id], 'method' => 'delete']) !!}
-                                        {!!   Form::submit('Borrar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
-                                        {!! Form::close() !!}
-
                                     </td>
                                 </tr>
                             @endforeach

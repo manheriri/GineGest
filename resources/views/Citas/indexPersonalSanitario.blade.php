@@ -5,29 +5,33 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Citas</div>
+                    <div class="panel-heading">Mis citas</div>
 
                     <div class="panel-body">
                         @include('flash::message')
-
+                        {!! Form::open(['route' => 'createPersonalSanitario', 'method' => 'get']) !!}
+                        {!!   Form::submit('Asignar cita', ['class'=> 'btn btn-primary'])!!}
+                        {!! Form::close() !!}
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>Medico</th>
+                                <th>Paciente</th>
                                 <th>Fecha</th>
+                                <th>Motivo</th>
+
                                 <th colspan="2">Acciones</th>
                             </tr>
 
-                            @foreach ($appointments as $apointment)
+                            @foreach ($appointments as $appointment)
 
 
                                 <tr>
-                                    <td>{{ $apointment->medicoName }}</td>
-                                    <td>{{ $apointment->fechaCita }}</td>
-
-                                    <td>{{ $apointment->reason}}</td>
+                                    <td>{{ $appointment->paciente->name }}</td>
+                                    <td>{{ $appointment->fechaCita }}</td>
+                                    <td>{{ $appointment->reason}}</td>
 
                                     <td>
-                                       De momento no hay acciones
+                                        No hay acciones
+
                                     </td>
                                 </tr>
                             @endforeach

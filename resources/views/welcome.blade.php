@@ -69,7 +69,7 @@
                         <a href="{{ route('login') }}"><font color="#a52a2a">Iniciar sesión</font></a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registrarse</a>
+                            <a href="{{ route('register') }}"><font color="#a52a2a">Registrarse</a>
                         @endif
                     @endauth
                 </div>
@@ -77,9 +77,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <h1 style="font-size:90px; color:Tomato;">GineGest</h1>
-                    <p style="text-align:center;font-size:40px; color:Tomato;">Bienvenido a su clínica de confianza.</p>
+                    <img src="favicon.ico" width="300px">
 
+                </div>
+                <div class="links">
+                    <a>Autor: Manuel Herrero Iriso</a>
+                    <a href="https://github.com/manheriri/GineGest" target="_blank">Repositorio GitHub</a>
                 </div>
             </div>
 

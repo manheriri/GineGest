@@ -34,9 +34,9 @@ class CreateObservationsTable extends Migration
                     'abortoInducido', 'abortoIndirecto'])->nullable();
                 $table->string('background')->nullable();
                 $table->string('amniocentesis');
-                $table->unsignedBigInteger('paciente_id')->nullable();
+                $table->unsignedBigInteger('paciente_id');
                 $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
-                $table->unsignedBigInteger('personalSanitario_id')->nullable();
+                $table->unsignedBigInteger('personalSanitario_id');
                 $table->foreign('personalSanitario_id')->references('id')->on('users')->onDelete('cascade');
             });
     }

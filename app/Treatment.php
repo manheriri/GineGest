@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Treatment extends Model
 {
-    protected $fillable = ['commonName','ReproductiveTreatmentType'];
+    protected $fillable = ['commonName','ReproductiveTreatmentType','paciente_id','personalSanitario_id'];
 
-    public function usert()
+    public function paciente()
     {
-        return $this->belongsToMany('App\User');
+
+        return $this->belongsTo('App\User','paciente_id');
+    }
+    public function personalSanitario()
+    {
+
+        return $this->belongsTo('App\User','personalSanitario_id');
     }
     public function medicamentos()
     {

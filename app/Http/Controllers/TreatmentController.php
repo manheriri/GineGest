@@ -3,63 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Observation;
 use App\Treatment;
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TreatmentController extends Controller
 {
     public function index()
     {
         //$appointments = Appointment::all();
-        $treatments = Treatment::where('paciente_id',Auth::user()->id)->get();
+        $treatments = Treatment::where('personalSanitario_id', Auth::user()->id)->get();
 
-        return view('Tratamientos.index',['treatments'=>$treatments]);
+        return view('Tratamientos.index', ['treatments' => $treatments]);
     }
+
+    public function indexPaciente()
+    {
+        $treatments = Treatment::where('paciente_id', Auth::user()->id)->get();
+        return view('Tratamientos.indexPaciente', ['treatments' => $treatments]);
+    }
+
     public function create()
     {
-        // $appointments = Appointment::all();
-        return view('Tratamientos.create');
+        $pacientes = User::where('userType', 'paciente')->get()->pluck('name', 'id');
+        return view('Tratamientos/create', ['pacientes' => $pacientes]);
     }
+
     public function store(Request $request)
     {
-        $this->validate($request, [
+        /*$this->validate($request, [
             'paciente_id' => 'required|date|after:now',
             'commonName' => ['required', 'string', 'max:255'],
             'ReproductiveTreatmentType' => ['required', 'string', 'max:255'],
-        ]);
-        $paciente_id = Auth::user()->id;
-
-        $treatment = new Appointment($request->all());
-        $treatment->paciente_id = $paciente_id;
-
+        ]);*/
+        $treatment = new Treatment($request->all());
+        $treatment->personalSanitario_id = Auth::user()->id;
         $treatment->save();
 
 
-        flash('Tratamiento creado correctamente');
+        flash('Tratamiento creada correctamente');
 
         return redirect()->route('tratamientos.index');
     }
+
     public function edit($id)
     {
 
         $treatments = Treatment::find($id);
 
 
-        $users = User::all()->pluck('paciente_id','id');
-
-
-        return view('Tratamientos/edit',['paciente_id'=> $treatments, 'commonName'=>$treatments, 'ReproductiveTreatmentType'=>$treatments]);
+        return view('Tratamientos/edit', ['treatments' => $treatments]);
     }
+
     public function update(Request $request, $id)
-    {
+    {/*
         $this->validate($request, [
             'paciente_id' => 'required|date|after:now',
             'commonName' => ['required', 'string', 'max:255'],
             'ReproductiveTreatmentType' => ['required', 'string', 'max:255'],
 
-        ]);
+        ]);*/
         $treatment = Treatment::find($id);
         $treatment->fill($request->all());
 
@@ -69,6 +74,7 @@ class TreatmentController extends Controller
 
         return redirect()->route('tratamientos.index');
     }
+
     public function destroy($id)
     {
         $treatments = Treatment::find($id);
@@ -76,5 +82,13 @@ class TreatmentController extends Controller
         flash('Tratamiento borrado correctamente');
 
         return redirect()->route('tratamientos.index');
+    }
+
+    public function show($id)
+    {
+        $treatments = Treatment::find($id);
+
+
+        return view('Tratamientos.show', ['treatments' => $treatments]);
     }
 }

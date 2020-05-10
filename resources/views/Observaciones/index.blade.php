@@ -22,8 +22,10 @@
 
 
                                 <tr>
-                                    <td>{{ $observation-> paciente_id }}
+                                    <td>{{ $observation->paciente->name
+ }}
                                     </td>
+
                                     <td>
                                         {!! Form::open(['route' => ['observaciones.show',$observation->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Ver Observaciones', ['class'=> 'btn btn-warning'])!!}

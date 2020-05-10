@@ -22,6 +22,8 @@ class CreatePregnanciesTable extends Migration
             $table->date('fechaFinal')->nullable();
             $table->unsignedBigInteger('paciente_id')->nullable();
             $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('personalSanitario_id')->nullable();
+            $table->foreign('personalSanitario_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'GineGest') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -76,27 +76,41 @@
                                         @csrf
                                     </form>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('misCitas') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('misCitas-form').submit();">
-                                        {{ __('Todas las citas') }}
-                                    </a>
-
-                                    <form id="misCitas-form" action="{{ route('misCitas') }}" method="GET" style="display: none;">
-                                        @csrf
-                                    </form>
-
-                                    @if(Auth::user()->userType =='personalSanitario')
-                                        <a class="dropdown-item" href="{{ route('observaciones.index') }}"
+                                    @if(Auth::user()->userType =='paciente')
+                                        <a class="dropdown-item" href="{{ route('observacionesPaciente') }}"
                                            onclick="event.preventDefault();
-                                                     document.getElementById('Observaciones-form').submit();">
+                                                     document.getElementById('observacionesPaciente-form').submit();">
                                             {{ __('Mis observaciones') }}
                                         </a>
 
-                                        <form id="Observaciones-form" action="{{ route('observaciones.index') }}" method="GET" style="display: none;">
+                                        <form id="observacionesPaciente-form" action="{{ route('observacionesPaciente') }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
+                                    @if(Auth::user()->userType =='paciente')
+                                        <a class="dropdown-item" href="{{ route('tratamientosPaciente') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('tratamientosPaciente-form').submit();">
+                                            {{ __('Mis tratamientos') }}
+                                        </a>
+
+                                        <form id="tratamientosPaciente-form" action="{{ route('tratamientosPaciente') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+
+                                    @if(Auth::user()->userType =='personalSanitario')
+                                        <a class="dropdown-item" href="{{ route('misObservaciones') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('misObservaciones-form').submit();">
+                                            {{ __('Mis observaciones') }}
+                                        </a>
+
+                                        <form id="misObservaciones-form" action="{{ route('misObservaciones') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+                                    @if(Auth::user()->userType =='personalSanitario')
                                     <a class="dropdown-item" href="{{ route('tratamientos.index') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('tratamientos-form').submit();">
@@ -106,6 +120,30 @@
                                     <form id="tratamientos-form" action="{{ route('tratamientos.index') }}" method="GET" style="display: none;">
                                         @csrf
                                     </form>
+                                    @endif
+
+                                    @if(Auth::user()->userType =='personalSanitario')
+                                        <a class="dropdown-item" href="{{ route('citasPersonal') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('citasPersonal-form').submit();">
+                                            {{ __('Mis Citas') }}
+                                        </a>
+
+                                        <form id="citasPersonal-form" action="{{ route('citasPersonal') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+                                    @if(Auth::user()->userType =='personalSanitario')
+                                        <a class="dropdown-item" href="{{ route('embarazos.index') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('embarazos-form').submit();">
+                                            {{ __('Embarazos') }}
+                                        </a>
+
+                                        <form id="embarazos-form" action="{{ route('embarazos.index') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
 
                                 </div>
                             </li>
