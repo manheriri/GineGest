@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
                         <div class="row-cols-6"> <span>Nombre común:</span> {{$treatments->commonName}}</div>
-                        <div class="row-cols-6"> <span>Tipo de tratamiento reproductivo:</span> {{$treatments->ReproductiveTreatmentType}}</div>
+                        <div class="row-cols-6"> <span>Tipo de tratamiento:</span> {{$treatments->tipoDeTratamiento}}</div>
 
                         <div>
                             {!! Form::open(['route' => ['tratamientosPaciente',$treatments->id], 'method' => 'get']) !!}

@@ -34,4 +34,12 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->hasMany('App\Pregnancy');
     }
+    public function result()
+    {
+        return $this->hasMany('App\Result');
+    }
+    public function getFullNameAttribute()
+    {
+        return $this->name .' '.$this->surname1;
+    }
 }

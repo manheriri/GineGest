@@ -20,6 +20,10 @@ class CreateAssociationTreatMedsTable extends Migration
             $table->date('initialDate');
             $table->date('finalDate')->nullable();
             $table->string('instructions');
+            $table->unsignedBigInteger('treatment_id');
+            $table->unsignedBigInteger('medicament_id');
+            $table->foreign('treatment_id')->references('id')->on('treatments')->onDelete('cascade');
+            $table->foreign('medicament_id')->references('id')->on('medicaments')->onDelete('cascade');
         });
     }
 

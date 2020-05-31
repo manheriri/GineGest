@@ -15,8 +15,12 @@
 
 
                         <div class="form-group">
-                            {!! Form::label('motherWeigth', 'peso') !!}
-                            {!! Form::text('motherWeigth',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('symptom', 'Síntomas') !!}
+                            {!! Form::text('symptom',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('comments', 'Comentarios') !!}
+                            {!! Form::text('comments',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
 
 

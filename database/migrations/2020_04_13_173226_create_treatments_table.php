@@ -18,7 +18,7 @@ class CreateTreatmentsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->String('commonName')->nullable();
-            $table->enum('ReproductiveTreatmentType',['FIV-ICSI','ROPA','estimulaciónOvárica', 'inseminaciónArtificial'])->nullable();
+            $table->enum('tipoDeTratamiento',['FIV-ICSI','ROPA','Estimulación Ovárica', 'Inseminación Artificial','Otros'])->nullable();
             $table->unsignedBigInteger('paciente_id')->nullable();
             $table->unsignedBigInteger('personalSanitario_id')->nullable();
             $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');

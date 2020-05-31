@@ -13,13 +13,12 @@ class CreateMedicamentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicaments',
-            function (Blueprint $table) {
+        Schema::create('medicaments', function (Blueprint $table) {
                 //$table->engine = 'InnoDB';
-                $table->increments('id');
+                $table->bigIncrements('id');
                 $table->timestamps();
-                $table->String('commonName')->nullable();
-                $table->String('presentation')->nullable();
+                $table->String('medicamentCommonName');
+                $table->String('medicamentPresentation');
             });
     }
 

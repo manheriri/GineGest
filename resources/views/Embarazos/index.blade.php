@@ -17,9 +17,11 @@
                             <tr>
                                 <th>Paciente</th>
                                 <th>Fecha inicio</th>
-                                <th>Fecha final</th>
-                                <th>Fecha fin</th>
-                                <th colspan="2">Acciones</th>
+                                <th>Fecha prevista de parto</th>
+                                <th>Fecha de parto</th>
+                                <th>Tipo de finalización del parto</th>
+
+                                <th colspan="3">Acciones</th>
                             </tr>
 
                             @foreach ($pregnancies as $pregnancy)
@@ -34,6 +36,13 @@
                                     </td>
                                     <td>{{ $pregnancy->fechaFinal }}
                                     </td>
+                                    <td>{{ $pregnancy->finalization }}
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['embarazos.show',$pregnancy->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Detalles del embarazo', ['class'=> 'btn btn-outline-warning'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
                                     <td>
                                         {!! Form::open(['route' => ['embarazos.edit',$pregnancy->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
@@ -41,7 +50,7 @@
                                     </td>
                                     <td>
                                         {!! Form::open(['route' => ['embarazos.destroy',$pregnancy->id], 'method' => 'delete']) !!}
-                                        {!!   Form::submit('Eliminar', ['class'=> 'btn btn-warning'])!!}
+                                        {!!   Form::submit('Eliminar', ['class'=> 'btn btn-danger','onclick' => 'if(!confirm("¿Está seguro que desea cancelarla?"))event.preventDefault();'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Treatment;
+use App\Observation;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
@@ -19,11 +23,41 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
+        //$users = DB::table('users')->get();
+        $users = User::where('userType','paciente')->get();
+        $observations = DB::table('observations')
+            ->join('users', 'users.id', '=', 'observations.paciente_id')
+            ->select('observations.id')->get();
+        $treatments=Treatment::all();
+        $title = 'Listado de pacientes';
 
-        $pacientes = User::all();
+//        return view('users.index')
+//            ->with('users', User::all())
+//            ->with('title', 'Listado de usuarios');
 
-        return view('Pacientes/index',['Pacientes'=>$pacientes]);
+        return view('Pacientes.index', compact('title', 'users','observations','treatments'));
+    }
+    public function show($id)
+    {
+        $observations = Observation::find($id);
+
+
+        return view('Observaciones.show',['observations'=>$observations]);
+    }
+    public function showmedtrat($id)
+    {
+        $treatments = Treatment::find($id);
+
+        return view('Pacientes.showMedicacion',['treatments'=>$treatments]);
+    }
+    public function observaciones()
+    {
+        $observations = DB::table('observations')
+            ->join('users', 'users.id', '=', 'observations.paciente_id')
+            ->select('observations.id')->get();
+
+
+        return view('Pacientes.observaciones',['observations'=>$observations]);
     }
 
     /**
@@ -31,101 +65,5 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $paciente = User::find($id);
-        return view('Pacientes/create',['Pacientes'=>$paciente]);
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-        ]);
-
-        //TODO: crear validación propia para nuhsa
-        $paciente = new Paciente($request->all());
-        $paciente->save();
-
-        // return redirect('especialidades');
-
-        flash('Paciente creado correctamente');
-
-        return redirect()->route('Pacientes.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // TODO: Mostrar las citas de un paciente
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $paciente = User::find($id);
-
-        return view('Pacientes/edit',['Paciente'=> $paciente ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-
-        ]);
-
-        $paciente = User::find($id);
-        $paciente->fill($request->all());
-
-        $paciente->save();
-
-        flash('Paciente modificado correctamente');
-
-        return redirect()->route('Pacientes.index');
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $paciente = Paciente::find($id);
-        $paciente->delete();
-        flash('Paciente borrado correctamente');
-
-        return redirect()->route('pacientes.index');
-    }
 }

@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::model($paciente_id, [ 'route' => ['tratamientos.update',$paciente_id->id], 'method'=>'PUT']) !!}
+                        {!! Form::model($treatments, [ 'route' => ['tratamientos.update',$treatments->id], 'method'=>'PUT']) !!}
 
 
                         <div class="form-group">
@@ -18,8 +18,8 @@
                             {!! Form::text('commonName',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('ReproductiveTreatmentType', 'Tipo de tratamiento reproductivo') !!}
-                            {!! Form::text('ReproductiveTreatmentType',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('tipoDeTratamiento', 'Tipo de tratamiento') !!}
+                            {!! Form::select('tipoDeTratamiento',['FIV-ICSI'=>'FIV-ICSI','ROPA'=>'ROPA','Estimulación Ovárica'=>'Estimulación Ovárica','Inseminación Artificial'=>'Inseminación Artificial','Otros'=>'Otros'], ['class' => 'form-control'])!!}
                         </div>
 
 

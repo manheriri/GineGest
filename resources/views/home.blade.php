@@ -21,6 +21,11 @@
                             Ahora puede gestionar sus consultas y a sus pacientes.
                             Utilice el menú para navegar por la aplicación.
                         @endif
+                        @if(Auth::user()->userType=='donante')
+                            Ahora puede pedir citas a nuestros profesionales y consultar información
+                            sobre sus resultados de donación.
+                            Utilice el menú para navegar por la aplicación.
+                        @endif
                 </div>
             </div>
         </div>

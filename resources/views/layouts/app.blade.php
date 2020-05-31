@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -55,15 +55,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
 
                                     @if(Auth::user()->userType =='paciente')
                                     <a class="dropdown-item" href="{{ route('misCitas') }}"
@@ -76,6 +68,31 @@
                                         @csrf
                                     </form>
                                     @endif
+                                        @if(Auth::user()->userType =='donante')
+
+                                            <a class="dropdown-item" href="{{ route('misCitasDonante') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('misCitasDonante-form').submit();">
+                                                {{ __('Mis Citas') }}
+                                            </a>
+
+                                            <form id="misCitasDonante-form" action="{{ route('misCitasDonante') }}" method="GET" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        @endif
+                                    @if(Auth::user()->userType =='donante')
+
+                                            <a class="dropdown-item" href="{{ route('misResultadosDonacion') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('misResultadosDonacion-form').submit();">
+                                                {{ __('Mis resultados de donación') }}
+                                            </a>
+
+                                            <form id="misResultadosDonacion-form" action="{{ route('misResultadosDonacion') }}" method="GET" style="display: none;">
+                                                @csrf
+                                            </form>
+                                    @endif
+
                                     @if(Auth::user()->userType =='paciente')
                                         <a class="dropdown-item" href="{{ route('observacionesPaciente') }}"
                                            onclick="event.preventDefault();
@@ -84,6 +101,17 @@
                                         </a>
 
                                         <form id="observacionesPaciente-form" action="{{ route('observacionesPaciente') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+                                    @if(Auth::user()->userType =='paciente')
+                                        <a class="dropdown-item" href="{{ route('misEmbarazos') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('misEmbarazos-form').submit();">
+                                            {{ __('Mis Embarazos') }}
+                                        </a>
+
+                                        <form id="misEmbarazos-form" action="{{ route('misEmbarazos') }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
@@ -100,50 +128,71 @@
                                     @endif
 
                                     @if(Auth::user()->userType =='personalSanitario')
-                                        <a class="dropdown-item" href="{{ route('misObservaciones') }}"
+                                        <a class="dropdown-item" href="{{ route('crearMedicamento.index') }}"
                                            onclick="event.preventDefault();
-                                                     document.getElementById('misObservaciones-form').submit();">
-                                            {{ __('Mis observaciones') }}
+                                                     document.getElementById('crearMedicamento-form').submit();">
+                                            {{ __('Listado de medicamentos') }}
                                         </a>
 
-                                        <form id="misObservaciones-form" action="{{ route('misObservaciones') }}" method="GET" style="display: none;">
+                                        <form id="crearMedicamento-form" action="{{ route('crearMedicamento.index') }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
                                     @if(Auth::user()->userType =='personalSanitario')
-                                    <a class="dropdown-item" href="{{ route('tratamientos.index') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('tratamientos-form').submit();">
-                                        {{ __('Tratamientos') }}
-                                    </a>
+                                        <a class="dropdown-item" href="{{ route('donacion.index') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('donacion-form').submit();">
+                                            {{ __('Lista de donantes') }}
+                                        </a>
 
-                                    <form id="tratamientos-form" action="{{ route('tratamientos.index') }}" method="GET" style="display: none;">
-                                        @csrf
-                                    </form>
+                                        <form id="donacion-form" action="{{ route('donacion.index') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
                                     @endif
 
                                     @if(Auth::user()->userType =='personalSanitario')
                                         <a class="dropdown-item" href="{{ route('citasPersonal') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('citasPersonal-form').submit();">
-                                            {{ __('Mis Citas') }}
+                                            {{ __('Citas con pacientes') }}
                                         </a>
 
                                         <form id="citasPersonal-form" action="{{ route('citasPersonal') }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
+                                        @if(Auth::user()->userType =='personalSanitario')
+                                            <a class="dropdown-item" href="{{ route('citasdonantes.index') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('citasdonantes-form').submit();">
+                                                {{ __('Citas con donantes') }}
+                                            </a>
+
+                                            <form id="citasdonantes-form" action="{{ route('citasdonantes.index') }}" method="GET" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        @endif
+
                                     @if(Auth::user()->userType =='personalSanitario')
-                                        <a class="dropdown-item" href="{{ route('embarazos.index') }}"
+                                        <a class="dropdown-item" href="{{ route('pacientes') }}"
                                            onclick="event.preventDefault();
-                                                     document.getElementById('embarazos-form').submit();">
-                                            {{ __('Embarazos') }}
+                                                     document.getElementById('pacientes-form').submit();">
+                                            {{ __('Pacientes') }}
                                         </a>
 
-                                        <form id="embarazos-form" action="{{ route('embarazos.index') }}" method="GET" style="display: none;">
+                                        <form id="pacientes-form" action="{{ route('pacientes') }}" method="GET" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Cerrar Sesión') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
 
                                 </div>
                             </li>

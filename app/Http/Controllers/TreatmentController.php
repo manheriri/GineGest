@@ -24,7 +24,18 @@ class TreatmentController extends Controller
         $treatments = Treatment::where('paciente_id', Auth::user()->id)->get();
         return view('Tratamientos.indexPaciente', ['treatments' => $treatments]);
     }
+    public function indexPersonal($id)
+    {
+        $treatments = Treatment::where('paciente_id',$id)->get();
+        // $users = User::where('userType','paciente')->get();
+        /* $observations = DB::table('observations')
+             ->join('users', 'users.id', '=', 'observations.paciente_id')
+             ->select('users.name', 'observations.*')
+             ->where('users.id','=','observations.paciente_id')->get();*/
 
+        return view('Pacientes.tratamientos',['treatments'=>$treatments]);
+
+    }
     public function create()
     {
         $pacientes = User::where('userType', 'paciente')->get()->pluck('name', 'id');

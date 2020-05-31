@@ -20,6 +20,14 @@ class CreatePregnanciesTable extends Migration
             $table->date('fechaPrevista')->nullable();
             $table->date('fechaInicio');
             $table->date('fechaFinal')->nullable();
+            $table->enum('fetalGender', ['Niño', 'Niña'])->nullable();
+            $table->double('fetalWeigth')->nullable();
+            $table->enum('streptococoAgalacitae',['Si','No','No detectectado por el momento'])->nullable();
+            $table->enum('finalization', ['Parto Natural', 'Parto Vaginal Instrumental', 'Parto Abdominal', 'Aborto Espontaneo',
+                'Aborto Inducido', 'Aborto Indirecto','Aún desconocida'])->nullable();
+            $table->string('fundalHeight')->nullable();
+            $table->integer('gestationWeek')->nullable();
+            $table->string('amniocentesis')->nullable();
             $table->unsignedBigInteger('paciente_id')->nullable();
             $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('personalSanitario_id')->nullable();

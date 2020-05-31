@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('dni')->unique();
             $table->string('surname1');
             $table->string('surname2')->nullable();
-            $table->date('date_of_birth')->nullable();
-            $table->boolean('isValid')->nullable();
+            $table->date('date_of_birth');
             $table->rememberToken();
             //$table->unsignedBigInteger('appointment_id');
             //$table->unsignedInteger('pregnancy_id');

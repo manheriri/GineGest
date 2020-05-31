@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Observation extends Model
 {
-    protected $fillable = ['motherWeigth','fetalWeigth','gestationWeek','fetalGender','allergy','smoker',
-        'drunker','bloodType','symptom','menarquia',
-        'streptococoAgalacitae','fundalHeight','finalization','background','amniocentesis','personalSanitario_id','paciente_id'];
+    protected $fillable = ['symptom','comments','personalSanitario_id','paciente_id'];
 
     public function paciente()
     {

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregnancy extends Model
 {
-    protected $fillable = ['fechaInicio', 'fechaPrevista', 'fechaFinal','paciente_id','paciente_id'];
+    protected $fillable = ['fechaInicio', 'fetalWeigth','gestationWeek','fechaPrevista',
+        'fechaFinal','fetalGender', 'streptococoAgalacitae','fundalHeight','finalization','amniocentesis',
+        'paciente_id','personalSanitario_id'];
 
     public function paciente()
     {

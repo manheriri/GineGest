@@ -12,9 +12,9 @@
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>Tratamiento creado por:</th>
-                                <th>Día de creación:</th>
+
                                 <th>Nombre común:</th>
-                                <th>Tipo de tratamiento reproductivo:</th>
+                                <th>Tipo de tratamiento:</th>
                                 <th colspan="1">Acciones</th>
                             </tr>
 
@@ -24,16 +24,15 @@
                                 <tr>
                                     <td>{{ $treatment->personalSanitario->name}}
                                     </td>
-                                    <td>{{ $treatment->created_at}}
-                                    </td>
                                     <td>{{ $treatment->commonName}}
                                     </td>
-                                    <td>{{ $treatment->ReproductiveTreatmentType}}
+                                    <td>{{ $treatment->tipoDeTratamiento}}
                                     </td>
 
                                     <td>
-                                        De momento no hay acciones, en el futuro
-                                        se verán los medicamentos asociados al tratamiento.
+                                        {!! Form::open(['route' => ['asociacionPorTreatmentPac',$treatment->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Ver medicación', ['class'=> 'btn btn-primary'])!!}
+                                        {!! Form::close() !!}
                                     </td>
 
                                 </tr>

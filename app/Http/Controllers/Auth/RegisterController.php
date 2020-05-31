@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'surname1' => ['required', 'string', 'max:255'],
             'dni' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required', 'date', 'max:255'],
-            'userType' => ['required', 'string', 'max:255'],
+            'userType' => ['required', 'string', 'in:personalSanitario,paciente,donante'],
 
         ]);
     }
@@ -76,7 +76,8 @@ class RegisterController extends Controller
             'dni' => $data['dni'],
             'surname1' => $data['surname1'],
             'surname2' => $data['surname2'],
-            'date_of_birth' => $data['date_of_birth']
+            'date_of_birth' => $data['date_of_birth'],
+            'userType' => $data['userType'],
         ]);
     }
 }

@@ -19,19 +19,24 @@
                                 <th>Medico</th>
                                 <th>Fecha</th>
                                 <th>Motivo</th>
-                                <th colspan="1">Acciones</th>
+                                <th colspan="2">Acciones</th>
                             </tr>
 
                             @foreach ($appointments as $appointment)
 
 
                                 <tr>
-                                    <td>{{ $appointment->personalSanitario->name }}</td>
+                                    <td>{{ $appointment->personalSanitario->fullName }}</td>
                                     <td>{{ $appointment->fechaCita }}</td>
                                     <td>{{ $appointment->reason}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$appointment->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['citas.destroy',$appointment->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Borrar cita', ['class'=> 'btn btn-danger','onclick' => 'if(!confirm("¿Está seguro que desea cancelarla?"))event.preventDefault();'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

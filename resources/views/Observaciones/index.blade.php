@@ -14,7 +14,7 @@
                         {!! Form::close() !!}
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>Paciente</th>
+                                <th>Fecha de creación</th>
                                 <th colspan="1">Acciones</th>
                             </tr>
 
@@ -22,13 +22,13 @@
 
 
                                 <tr>
-                                    <td>{{ $observation->paciente->name
+                                    <td>{{ $observation->created_at
  }}
                                     </td>
 
                                     <td>
                                         {!! Form::open(['route' => ['observaciones.show',$observation->id], 'method' => 'get']) !!}
-                                        {!!   Form::submit('Ver Observaciones', ['class'=> 'btn btn-warning'])!!}
+                                        {!!   Form::submit('Ver Observación', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
                                     </td>
 

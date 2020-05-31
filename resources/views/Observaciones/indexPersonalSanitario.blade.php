@@ -20,7 +20,7 @@
 
 
                                 <tr>
-                                    <td>{{ $observation->paciente_id }}
+                                    <td>{{ $observation->created_at }}
                                     </td>
                                     <td>
                                         {!! Form::open(['route' => ['observaciones.show',$observation->id], 'method' => 'get']) !!}

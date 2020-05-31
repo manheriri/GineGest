@@ -17,7 +17,7 @@
                             <tr>
                                 <th>Paciente</th>
                                 <th>Nombre común</th>
-                                <th>Tipo de tratamiento reproductivo</th>
+                                <th>Tipo de tratamiento</th>
                                 <th colspan="2">Acciones</th>
                             </tr>
 
@@ -29,7 +29,7 @@
                                     </td>
                                     <td>{{ $treatment->commonName }}
                                     </td>
-                                    <td>{{ $treatment->ReproductiveTreatmentType }}
+                                    <td>{{ $treatment->tipoDeTratamiento }}
                                     </td>
                                     <td>
                                         {!! Form::open(['route' => ['tratamientos.edit',$treatment->id], 'method' => 'get']) !!}

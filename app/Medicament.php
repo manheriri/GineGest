@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medicament extends Model
 {
-    protected $fillable = ['commonName','presentation'];
+    protected $fillable = ['medicamentPresentation','medicamentCommonName'];
 
-    public function tratamientos()
+    public function assocciationtreatmeds()
     {
-        return $this->belongsToMany('App/Traetment');
+        return $this->hasMany('App\AssociationTreatMed');
     }
-    public function tratamiento()
+    public function getFullNameAttribute()
     {
-        return $this->hasMany('App\Treatment');
+        return $this->medicamentCommonName .' '.$this->medicamentPresentation;
     }
+
 }

@@ -23,8 +23,10 @@ class CreateAppointmentsTable extends Migration
             $table->date('fechaCita')->unique();
             $table->unsignedBigInteger('paciente_id')->nullable();
             $table->unsignedBigInteger('personalSanitario_id')->nullable();
+            $table->unsignedBigInteger('donante_id')->nullable();
             $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('personalSanitario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('donante_id')->references('id')->on('users')->onDelete('cascade');
 
 
         });
