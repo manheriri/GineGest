@@ -168,7 +168,7 @@ class CitasController extends Controller
     $appointments->delete();
     flash('Cita borrada correctamente');
 
-    return redirect()->route('citas.destroy');
+    return redirect()->route('eliminarCita');
 }
     public function destroyPersonal($id)
     {

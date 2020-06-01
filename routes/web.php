@@ -23,7 +23,7 @@ Route::group(['middleware' => 'App\Http\Middleware\PacienteMiddleware'], functio
     Route::get('/misCitas','CitasController@index')->name('misCitas');
 
     Route::resource('citas', 'CitasController');
-
+    Route::delete('/eliminarCita/{id}','CitasController@destroy')->name('eliminarCita');
     Route::resource('misObservacionesPaciente', 'ObservationController');
     Route::get('/tratamientosPaciente','TreatmentController@indexPaciente')->name('tratamientosPaciente');
     Route::get('/verTratamientos','TreatmentController@show')->name('verTratamientos');

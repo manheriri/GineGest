@@ -11,7 +11,7 @@
                         <div class="row-cols-6"> <span>VALIDEZ:</span> {{$results->isValid}}</div>
                         <div class="row-cols-6"> <span>Análisis de sangre:</span> {{$results->analisisSangre}}</div>
                         <div class="row-cols-6"> <span>Análisis de orina:</span> {{$results->analisisOrina}}</div>
-                        @if('generoDonante'=='masculino')
+                        @if($results->generoDonante=='masculino')
                         <div class="row-cols-6"> <span>Prueba urológica:</span> {{$results->pruebaUrologica}}</div>
                         @else
                         <div class="row-cols-6"> <span>Prueba ginecológica:</span> {{$results->pruebaGinecologica}}</div>

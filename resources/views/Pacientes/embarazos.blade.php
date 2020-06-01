@@ -40,7 +40,7 @@
                                     </td>
                                     <td>
                                         {!! Form::open(['route' => ['embarazos.show',$pregnancy->id], 'method' => 'get']) !!}
-                                        {!!   Form::submit('Detalles del embarazo', ['class'=> 'btn btn-outline-primary'])!!}
+                                        {!!   Form::submit('Detalles del embarazo', ['class'=> 'btn btn-primary'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                     <td>

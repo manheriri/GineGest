@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::model($paciente_id, [ 'route' => ['citas.update',$paciente_id->id], 'method'=>'PUT']) !!}
+                        {!! Form::model($appointments, [ 'route' => ['citas.update',$appointments->id], 'method'=>'PUT']) !!}
 
 
                         <div class="form-group">

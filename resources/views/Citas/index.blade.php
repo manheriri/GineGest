@@ -35,7 +35,7 @@
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        {!! Form::open(['route' => ['citas.destroy',$appointment->id], 'method' => 'get']) !!}
+                                        {!! Form::open(['route' => ['eliminarCita',$appointment->id], 'method' => 'delete']) !!}
                                         {!!   Form::submit('Borrar cita', ['class'=> 'btn btn-danger','onclick' => 'if(!confirm("¿Está seguro que desea cancelarla?"))event.preventDefault();'])!!}
                                         {!! Form::close() !!}
                                     </td>
